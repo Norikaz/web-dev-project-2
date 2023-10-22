@@ -1,7 +1,8 @@
 import React from 'react';
+import NavBar from '../components/UI/NavBar';
 
 const HomPage = () => {
-	return <p>This will be the landing page for our webapp</p>;
+	return <></>;
 };
 
 export default HomPage;
