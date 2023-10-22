@@ -7,6 +7,15 @@
 - Eslint: dbaeumer.vscode-eslint (Extension Id's)
 - Prettier: esbenp.prettier-vscode
 
+### [Learn how to contribute to the repo and make revisions](https://cuny-my.sharepoint.com/:v:/g/personal/norik_zhagui69_qmail_cuny_edu/EaAxVWmxerVPuvE5fhPhfhEBtV8XoVmVsRc6z__jiEb4Wg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19&e=evrRlK) 
+Note you may need to run this before making a revision 
+
+```
+git config pull.rebase true
+```
+### [Learn how to work with other developers and update your existing branch when someone has mereged theirs](https://www.youtube.com/watch?v=f1wnYdLEpgI&t=313s)
+
+
 ## [UI Library](https://mui.com/material-ui/getting-started/)
 We are using MUI for our front end components 
 
