@@ -6,7 +6,9 @@
 
 - Eslint: dbaeumer.vscode-eslint (Extension Id's)
 - Prettier: esbenp.prettier-vscode
-- Jest: Orta.vscode-jest
+
+## [UI Library](https://mui.com/material-ui/getting-started/)
+We are using MUI for our front end components 
 
 ## Team Coding conventions
 
