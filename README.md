@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+## Set up
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Clone the repo to your perfered IDE(VS Code Highly suggested)
+2. run npm install
+3. Assuming you are using VS Code -> Install the following extentsions for ideal development:
 
-## Available Scripts
+- Eslint: dbaeumer.vscode-eslint (Extension Id's)
+- Prettier: esbenp.prettier-vscode
+- Jest: Orta.vscode-jest
 
-In the project directory, you can run:
+## Team Coding conventions
 
-### `npm start`
+### Componenets
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Should follow this [structure](https://cuny-my.sharepoint.com/:i:/g/personal/norik_zhagui69_qmail_cuny_edu/ESHZa8w1_kRFrJPUwNlhLp8BHO0K2u495hB0REJPf1hQ3A?e=wl9gZq)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Props
 
-### `npm test`
+If your component takes in any props define an interface for them at the top most level underneath the imports
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Development
 
-### `npm run build`
+We will be using Git branch work flow
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- create a new branch for every new feature that is being implimented
+- You must unit test that code if there is functionality
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+IMPORTANT: Make sure to commit once to a branch and any changes after should be an ammed commit and not a new commit. This will allow the reivewers to see the diff between revisions easier and make reviews more efficient
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Pull Request
 
-### `npm run eject`
+should not be more than one page if you have to much code in one pull request you will have to split them up into multiple differnt pull request if possible do not overwhelem the reviewers with too much code.
+Look into [Sub branching](https://stackoverflow.com/questions/4470523/create-a-branch-in-git-from-another-branch) to optimize your development workflow in order to not be slowed down while waiting on code to be reviewed or use it to have a follow up pull request if your original one was to large
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+A PR can only be merged when it has approval from atleast two reviewers

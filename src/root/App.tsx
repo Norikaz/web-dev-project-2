@@ -1,16 +1,22 @@
 import React from 'react';
-
-import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ROUTES } from './routes-constants';
 import HomPage from '../pages/HomePage';
+import NavBar from '../components/UI/NavBar';
+import { ThemeProvider } from '@emotion/react';
+import customTheme from '../context/theme';
+
+import './App.scss';
 
 const App = () => {
 	return (
 		<Router>
-			<Routes>
-				<Route path={ROUTES.HOMEPAGE} element={<HomPage />} />
-			</Routes>
+			<ThemeProvider theme={customTheme}>
+				<NavBar />
+				<Routes>
+					<Route path={ROUTES.HOMEPAGE} element={<HomPage />} />
+				</Routes>
+			</ThemeProvider>
 		</Router>
 	);
 };
