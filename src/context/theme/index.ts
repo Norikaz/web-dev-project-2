@@ -1,4 +1,11 @@
 import { ThemeOptions, createTheme } from '@mui/material/styles';
+/* 
+Theme creator see how changes will effect the components(REALLY GOOD)
+https://zenoo.github.io/mui-theme-creator/#Icon
+
+Find colors that work well together 
+https://m2.material.io/inline-tools/color/
+*/
 
 const customTheme: ThemeOptions = createTheme({
 	palette: {
