@@ -1,8 +1,12 @@
 import React from 'react';
-import NavBar from '../components/UI/NavBar';
+import HomeFeed from '../components/UI/HomeFeed';
 
-const HomPage = () => {
-	return <></>;
+const HomePage = () => {
+	return (
+		<>
+			<HomeFeed />
+		</>
+	);
 };
 
-export default HomPage;
+export default HomePage;
