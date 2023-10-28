@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ROUTES } from './routes-constants';
-import HomPage from '../pages/HomePage';
+import HomePage from '../pages/HomePage';
 import NavBar from '../components/UI/NavBar';
 import { ThemeProvider } from '@emotion/react';
 import customTheme from '../context/theme';
@@ -14,7 +14,7 @@ const App = () => {
 			<ThemeProvider theme={customTheme}>
 				<NavBar />
 				<Routes>
-					<Route path={ROUTES.HOMEPAGE} element={<HomPage />} />
+					<Route path={ROUTES.HOMEPAGE} element={<HomePage />} />
 				</Routes>
 			</ThemeProvider>
 		</Router>

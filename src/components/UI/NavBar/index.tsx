@@ -32,8 +32,8 @@ const NavBar = () => {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-						APP NAME
+					<Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+						AnimeCritic
 					</Typography>
 					<Button color="inherit">Login</Button>
 				</Toolbar>
