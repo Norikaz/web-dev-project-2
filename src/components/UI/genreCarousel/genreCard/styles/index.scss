@@ -1,0 +1,29 @@
+.genre-card {
+	max-width: 90%;
+	height: 100%;
+	position: relative;
+
+	.genre-card-img {
+		height: 30em;
+	}
+}
+
+.genre-overlay {
+	visibility: hidden;
+}
+
+.genre-card:hover .genre-overlay {
+	visibility: visible;
+}
+
+.genre-card:hover .genre-card-action {
+	opacity: 0.3;
+
+	.genre-card-img {
+		height: 39em;
+	}
+
+	.genre-card-content {
+		display: none;
+	}
+}

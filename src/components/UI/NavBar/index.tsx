@@ -9,7 +9,7 @@ import {
 	Typography,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import DrawerItems from '../DrawerItems';
+import DrawerItems from './DrawerItems';
 
 const NavBar = () => {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);

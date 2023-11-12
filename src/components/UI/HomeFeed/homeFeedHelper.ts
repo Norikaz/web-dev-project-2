@@ -1,4 +1,4 @@
-import { getMangaListResponse } from '../../../api/getMangaList';
+import { GetTopAnimeResponse } from '../../../api/getTopAnime';
 
 type Genre = {
 	name: string;
@@ -28,9 +28,34 @@ export const RESPONSIVE = {
 	},
 };
 
-export const extractGenres = (apiResponse: getMangaListResponse[]) => {
-	return apiResponse.map((manga: getMangaListResponse) => {
-		const genreNames = manga.genres.map((genre: Genre) => genre.name);
-		return genreNames.slice(0, 5).join(', ');
+export const RESPONSIVE_GENRE_CAROUSEL = {
+	desktop: {
+		breakpoint: {
+			max: 3000,
+			min: 1024,
+		},
+		items: 5,
+	},
+	mobile: {
+		breakpoint: {
+			max: 464,
+			min: 0,
+		},
+		items: 3,
+	},
+	tablet: {
+		breakpoint: {
+			max: 1024,
+			min: 464,
+		},
+		items: 3,
+	},
+};
+
+export const extractGenres = (
+	apiResponse: GetTopAnimeResponse[] | undefined
+) => {
+	return apiResponse?.map((manga: GetTopAnimeResponse) => {
+		return manga.genres.slice(0, 5).join(', ');
 	});
 };

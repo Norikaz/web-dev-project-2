@@ -1,5 +1,5 @@
 .home-feed-card {
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 
 	.feed-card-description {
@@ -11,6 +11,6 @@
 
 	.home-feed-image {
 		width: 100%;
-		height: auto;
+		height: 100%;
 	}
 }
