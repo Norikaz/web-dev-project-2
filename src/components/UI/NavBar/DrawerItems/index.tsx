@@ -1,65 +1,94 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import React, { useState } from 'react';
+import {
+	AppBar,
+	Box,
+	CssBaseline,
+	Divider,
+	Drawer,
+	IconButton,
+	List,
+	ListItem,
+	ListItemButton,
+	ListItemIcon,
+	ListItemText,
+	Toolbar,
+	Typography,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import MovieIcon from '@mui/icons-material/Movie';
 import BookIcon from '@mui/icons-material/Book';
 import StarRateIcon from '@mui/icons-material/StarRate';
+import getManga, {
+	GenreFilter,
+	GetMangaSearchResponse,
+} from '../../../../api/getManga';
 
 const drawerWidth = 240;
 
-interface Props {
+interface DrawerItemsProps {
 	window?: () => Window;
 	toggleDrawer: () => void;
 }
 
-export default function DrawerItems(props: Props) {
-	const { window } = props;
-	const [mobileOpen, setMobileOpen] = React.useState(false);
+const DrawerItems: React.FC<DrawerItemsProps> = ({ window, toggleDrawer }) => {
+	const [mobileOpen, setMobileOpen] = useState(false);
+	const [hoveredGenre, setHoveredGenre] = useState<GenreFilter | null>(null);
+	const [mangaData, setMangaData] = useState<GetMangaSearchResponse[]>([]);
+
+	const handleGenreHover = async (genre: GenreFilter) => {
+		const data = await getManga(genre);
+		console.log('data returned from site:', data);
+		setMangaData(data);
+		setHoveredGenre(genre);
+	};
+
+	const genres = {
+		Action: GenreFilter.Action,
+		Drama: GenreFilter.Drama,
+		SliceOfLife: GenreFilter.SliceOfLife,
+		Supernatural: GenreFilter.Supernatural,
+	};
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
 	};
 
-	const drawer = (
+	const drawerContent = (
 		<div>
 			<Toolbar />
 			<Divider />
 			<List>
-				{['Movies', 'Manga', 'Anime', 'Top Rated'].map((text, index) => (
-					<ListItem key={text} disablePadding>
-						<ListItemButton>
-							<ListItemIcon>
-								{
-									[
-										<MovieIcon key="movies" />,
-										<BookIcon key="manga" />,
-										<MovieIcon key="anime" />,
-										<StarRateIcon key="top-rated" />,
-									][index]
-								}
-							</ListItemIcon>
-							<ListItemText primary={text} />
+				{Object.entries(genres).map(([genreName, genreId]) => (
+					<ListItem key={genreName} disablePadding>
+						<ListItemButton
+							onMouseEnter={() => {
+								console.log('Mouse click');
+								handleGenreHover(genreId);
+							}}
+						>
+							{/* Replace with appropriate icons based on genre */}
+							<ListItemIcon>{/* Example icon */ <BookIcon />}</ListItemIcon>
+							<ListItemText primary={genreName} />
 						</ListItemButton>
 					</ListItem>
 				))}
 			</List>
+			{mangaData && mangaData.length > 0 && (
+				<Box sx={{ padding: 2 }}>
+					{mangaData.map((manga, index) => (
+						<img
+							key={index}
+							src={manga.image}
+							alt={manga.title}
+							style={{ width: '100%', marginBottom: 10 }}
+						/>
+					))}
+				</Box>
+			)}
 		</div>
 	);
 
-	const container =
-		window !== undefined ? () => window().document.body : undefined;
+	const container = window !== undefined ? window().document.body : undefined;
 
 	return (
 		<Box sx={{ display: 'flex' }}>
@@ -80,59 +109,35 @@ export default function DrawerItems(props: Props) {
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<Box
-				component="nav"
-				sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-				aria-label="review sections"
-			>
-				<Drawer
-					container={container}
-					variant="temporary"
-					open={mobileOpen}
-					onClose={handleDrawerToggle}
-					ModalProps={{
-						keepMounted: true,
-					}}
-					sx={{
-						display: { xs: 'block', sm: 'none' },
-						'& .MuiDrawer-paper': {
-							boxSizing: 'border-box',
-							width: drawerWidth,
-						},
-					}}
-				>
-					{drawer}
-				</Drawer>
-				<Drawer
-					variant="permanent"
-					sx={{
-						display: { xs: 'none', sm: 'block' },
-						'& .MuiDrawer-paper': {
-							boxSizing: 'border-box',
-							width: drawerWidth,
-							top: '64px', // or the height of your AppBar
-						},
-					}}
-					open
-				>
-					{drawer}
-				</Drawer>
-			</Box>
-			<Box
-				component="main"
+			<Drawer
+				container={container}
+				variant="temporary"
+				open={mobileOpen}
+				onClose={handleDrawerToggle}
+				ModalProps={{ keepMounted: true }}
 				sx={{
-					flexGrow: 1,
-					p: 3,
-					width: { sm: drawerWidth },
+					display: { xs: 'block', sm: 'none' },
+					'& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
 				}}
 			>
-				<Toolbar />
-				{/* <Typography paragraph>
-					Welcome to the Review Hub! Browse through our movie, manga, and anime
-					reviews. Dive into the top-rated selections and discover something
-					new!
-				</Typography> */}
-			</Box>
+				{drawerContent}
+			</Drawer>
+			<Drawer
+				variant="permanent"
+				sx={{
+					display: { xs: 'none', sm: 'block' },
+					'& .MuiDrawer-paper': {
+						boxSizing: 'border-box',
+						width: drawerWidth,
+						top: '64px',
+					},
+				}}
+				open
+			>
+				{drawerContent}
+			</Drawer>
 		</Box>
 	);
-}
+};
+
+export default DrawerItems;
