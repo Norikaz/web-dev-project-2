@@ -76,7 +76,7 @@ export default function DrawerItems(props: Props) {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" noWrap component="div">
-						Review Hub
+						AnimeCritic
 					</Typography>
 				</Toolbar>
 			</AppBar>
