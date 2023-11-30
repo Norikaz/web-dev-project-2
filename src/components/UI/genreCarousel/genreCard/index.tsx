@@ -1,18 +1,10 @@
 import React from 'react';
-import {
-	Box,
-	Card,
-	CardActionArea,
-	CardContent,
-	CardMedia,
-	IconButton,
-	Typography,
-} from '@mui/material';
+import { Box, Card, CardActionArea, CardContent, CardMedia, IconButton, Typography } from '@mui/material';
 import RateReviewIcon from '@mui/icons-material/RateReview';
-
+import { useNavigate } from 'react-router-dom';
 import './styles/index.scss';
 
-const MAX_SYPNOSIS_LENGTH = 250;
+const MAX_SYPNOSIS_LENGTH = 500;
 
 interface GenreCardProps {
 	title: string;
@@ -29,10 +21,16 @@ export const formatSypnosis = (sypnosis: string) => {
 };
 
 const GenreCard = ({ title, sypnosis, image }: GenreCardProps) => {
+	// Handler for card, redirect to the specific anime's page when clicked
+	const navigate = useNavigate();
+	const handleReviewClick = () => {
+		navigate(`/${title}/review`);
+	};
+
 	return (
 		<>
 			<Card className="genre-card">
-				<CardActionArea className="genre-card-action">
+				<CardActionArea className="genre-card-action" onClick={handleReviewClick}>
 					<CardMedia className="genre-card-img" component="img" image={image} />
 					<CardContent className="genre-card-content">
 						<Typography gutterBottom variant="h5">
@@ -49,22 +47,15 @@ const GenreCard = ({ title, sypnosis, image }: GenreCardProps) => {
 						top: '3%',
 						left: '5%',
 					}}
-					className="genre-overlay"
-				>
-					<Typography variant="h5">{title}</Typography>
-					<Typography variant="body1" color="text.secondary">
-						{formatSypnosis(sypnosis)}
-					</Typography>
-					{/* onclick opens the review page for this card */}
+					className="genre-overlay">
 					<IconButton
 						color="primary"
 						sx={{
 							position: 'absolute',
 							top: '18em',
 							left: 0,
-						}}
-					>
-						<RateReviewIcon fontSize="large" />
+						}}>
+						<RateReviewIcon fontSize="large" onClick={handleReviewClick} />
 					</IconButton>
 				</Box>
 			</Card>
