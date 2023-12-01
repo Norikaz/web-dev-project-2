@@ -1,5 +1,13 @@
 import React from 'react';
-import { Box, Card, CardActionArea, CardContent, CardMedia, IconButton, Typography } from '@mui/material';
+import {
+	Box,
+	Card,
+	CardActionArea,
+	CardContent,
+	CardMedia,
+	IconButton,
+	Typography,
+} from '@mui/material';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import { useNavigate } from 'react-router-dom';
 import './styles/index.scss';
@@ -30,7 +38,7 @@ const GenreCard = ({ title, sypnosis, image }: GenreCardProps) => {
 	return (
 		<>
 			<Card className="genre-card">
-				<CardActionArea className="genre-card-action" onClick={handleReviewClick}>
+				<CardActionArea className="genre-card-action">
 					<CardMedia className="genre-card-img" component="img" image={image} />
 					<CardContent className="genre-card-content">
 						<Typography gutterBottom variant="h5">
@@ -47,14 +55,20 @@ const GenreCard = ({ title, sypnosis, image }: GenreCardProps) => {
 						top: '3%',
 						left: '5%',
 					}}
-					className="genre-overlay">
+					className="genre-overlay"
+				>
+					<Typography variant="h5">{title}</Typography>
+					<Typography variant="body1" color="text.secondary">
+						{formatSypnosis(sypnosis)}
+					</Typography>
 					<IconButton
 						color="primary"
 						sx={{
 							position: 'absolute',
 							top: '18em',
 							left: 0,
-						}}>
+						}}
+					>
 						<RateReviewIcon fontSize="large" onClick={handleReviewClick} />
 					</IconButton>
 				</Box>
