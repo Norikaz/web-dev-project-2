@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeFeed from '../components/UI/HomeFeed';
 import GenreCarousel from '../components/UI/genreCarousel';
-import { GenreFilter } from '../api/getManga';
+import { GenreFilter } from '../api/thirdParty/getManga';
 
 const style: React.CSSProperties = {
 	position: 'relative',

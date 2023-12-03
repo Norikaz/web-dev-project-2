@@ -2,53 +2,55 @@ import React, { useEffect, useState } from 'react';
 import AnimeDetail from '../components/UI/AnimeDetail';
 import { useParams } from 'react-router-dom';
 import { TextField, Button } from '@mui/material';
+import getReviewByTitle, {
+	ReviewResponse,
+} from '../api/internal/getMangaReviewsByTitle';
 
 const ReviewPage = () => {
 	const { anime } = useParams();
-	const [reviewText, setReviewText] = useState('');
-	const [reviewerName, setReviewerName] = useState('');
-	const [reviews, setReviews] = useState<{ reviewerName: string; reviewText: string }[]>([]);
+	const [reviewContent, setReviewContent] = useState('');
+	const [reviews, setReviews] = useState<ReviewResponse[]>([]);
 
 	// Ignore - Fixes broken scroll on page/componenet render
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		getReviewByTitle(anime ?? '').then(response => setReviews(response.data));
 	}, []);
 
-	const handleReviewSubmit = () => {
-		const newReview = {
-			reviewerName,
-			reviewText,
-		};
+	// const handleReviewSubmit = () => {
+	// 	const newReview = {
+	// 		content: reviewContent,
+	// 	};
 
-		// These displays reviews on the page, and clears previous input once submitted.
-		setReviews(prevReviews => [...prevReviews, newReview]);
-		setReviewText('');
-		setReviewerName('');
-	};
+	// 	// These displays reviews on the page, and clears previous input once submitted.
+	// 	setReviews(prevReviews => [...prevReviews, newReview]);
+	// 	setReviewContent('');
+	// };
 
 	return (
-		<div style={{ backgroundColor: 'black', color: 'white', minHeight: '100vh' }}>
+		<div
+			style={{ backgroundColor: 'black', color: 'white', minHeight: '100vh' }}
+		>
 			<h2 style={{ textAlign: 'center' }}>{anime} - Details and Reviews</h2>
-			<div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px' }}>
-				{anime ? <AnimeDetail anime={anime} /> : <p style={{ textAlign: 'center' }}>Could not find that anime</p>}
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'space-around',
+					padding: '20px',
+				}}
+			>
+				{anime ? (
+					<AnimeDetail anime={anime} />
+				) : (
+					<p style={{ textAlign: 'center' }}>Could not find that anime</p>
+				)}
 			</div>
 			<div style={{ padding: '20px', textAlign: 'center' }}>
 				<h3>Reviews</h3>
-				{reviews.map((review, index) => (
-					<p key={index}>{`${review.reviewerName}: ${review.reviewText}`}</p>
+				{reviews.map((review, idx) => (
+					<p key={idx + 1}>{`${idx + 1}: ${review.content}`}</p>
 				))}
 
-				{/* Review input fields */}
-				<TextField
-					label="Your Name"
-					variant="outlined"
-					fullWidth
-					margin="normal"
-					focused
-					value={reviewerName}
-					placeholder="eg; John Smith"
-					onChange={e => setReviewerName(e.target.value)}
-				/>
 				<TextField
 					label="Your Review"
 					variant="outlined"
@@ -57,11 +59,15 @@ const ReviewPage = () => {
 					rows={4}
 					margin="normal"
 					focused
-					value={reviewText}
+					value={reviewContent}
 					placeholder="Post your thoughts..."
-					onChange={e => setReviewText(e.target.value)}
+					onChange={e => setReviewContent(e.target.value)}
 				/>
-				<Button variant="contained" color="primary" onClick={handleReviewSubmit}>
+				<Button
+					variant="contained"
+					color="primary"
+					// onClick={handleReviewSubmit}
+				>
 					Submit Review
 				</Button>
 			</div>

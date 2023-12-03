@@ -9,7 +9,9 @@ import {
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { RESPONSIVE, extractGenres } from './homeFeedHelper';
-import getTopAnime, { GetTopAnimeResponse } from '../../../api/getTopAnime';
+import getTopAnime, {
+	GetTopAnimeResponse,
+} from '../../../api/thirdParty/getTopAnime';
 import { formatSypnosis } from '../genreCarousel/genreCard';
 
 import './styles/index.scss';

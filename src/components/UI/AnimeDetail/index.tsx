@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CircularProgress, CardMedia, Typography } from '@mui/material';
-import { getSingleManga, GetMangaSearchResponse } from '../../../api/getManga';
+import {
+	getSingleManga,
+	GetMangaSearchResponse,
+} from '../../../api/thirdParty/getManga';
 
 interface AnimeDetailProps {
 	anime: string;
 }
 
 const AnimeDetail: React.FC<AnimeDetailProps> = () => {
-	const [animeDetails, setAnimeDetails] = useState<GetMangaSearchResponse | null>(null);
+	const [animeDetails, setAnimeDetails] =
+		useState<GetMangaSearchResponse | null>(null);
 	const { anime: currentAnimeParam } = useParams();
 
 	useEffect(() => {
@@ -31,7 +35,11 @@ const AnimeDetail: React.FC<AnimeDetailProps> = () => {
 
 	return (
 		<div style={{ display: 'flex', alignItems: 'center' }}>
-			<CardMedia component="img" src={animeDetails.image} style={{ borderRadius: '12px', marginRight: '20px', width: '230px' }} />
+			<CardMedia
+				component="img"
+				src={animeDetails.image}
+				style={{ borderRadius: '12px', marginRight: '20px', width: '230px' }}
+			/>
 			<div>
 				<Typography variant="h5">{animeDetails.title}</Typography>
 				<Typography variant="body2" color="text.secondary">
