@@ -1,4 +1,4 @@
-import { GetTopAnimeResponse } from '../../../api/getTopAnime';
+import { GetTopAnimeResponse } from '../../../api/thirdParty/getTopAnime';
 
 type Genre = {
 	name: string;

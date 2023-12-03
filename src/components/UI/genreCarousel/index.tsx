@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import { CircularProgress, Typography } from '@mui/material';
 import { RESPONSIVE_GENRE_CAROUSEL } from '../HomeFeed/homeFeedHelper';
-import getManga, { GenreFilter } from '../../../api/getManga';
+import getManga, { GenreFilter } from '../../../api/thirdParty/getManga';
 import GenreCard from './genreCard';
 
 import './styles/index.scss';

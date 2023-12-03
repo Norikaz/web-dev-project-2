@@ -21,7 +21,7 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import getManga, {
 	GenreFilter,
 	GetMangaSearchResponse,
-} from '../../../../api/getManga';
+} from '../../../../api/thirdParty/getManga';
 
 const drawerWidth = 240;
 
