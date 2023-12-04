@@ -5,6 +5,7 @@ import { TextField, Button } from '@mui/material';
 import getReviewByTitle, {
 	ReviewResponse,
 } from '../api/internal/getMangaReviewsByTitle';
+import postReview from '../api/internal/postMangaReview';
 
 const ReviewPage = () => {
 	const { anime } = useParams();
@@ -17,15 +18,16 @@ const ReviewPage = () => {
 		getReviewByTitle(anime ?? '').then(response => setReviews(response.data));
 	}, []);
 
-	// const handleReviewSubmit = () => {
-	// 	const newReview = {
-	// 		content: reviewContent,
-	// 	};
+	const handleReviewSubmit = () => {
+		const newReview = {
+			content: reviewContent,
+		};
 
-	// 	// These displays reviews on the page, and clears previous input once submitted.
-	// 	setReviews(prevReviews => [...prevReviews, newReview]);
-	// 	setReviewContent('');
-	// };
+		// These displays reviews on the page, and clears previous input once submitted.
+		setReviews(prevReviews => [...prevReviews, newReview]);
+		setReviewContent('');
+		postReview({ content: newReview.content, mangaTitle: anime ?? '' });
+	};
 
 	return (
 		<div
@@ -66,7 +68,7 @@ const ReviewPage = () => {
 				<Button
 					variant="contained"
 					color="primary"
-					// onClick={handleReviewSubmit}
+					onClick={handleReviewSubmit}
 				>
 					Submit Review
 				</Button>

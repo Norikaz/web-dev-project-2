@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const LOCAL_SERVER_URL_END_POINT = 'http://localhost:8080/get-review';
+export const LOCAL_SERVER_URL_END_POINT = 'http://localhost:8080/review';
 
 export interface ReviewResponse {
 	content: string;
