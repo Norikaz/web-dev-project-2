@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AnimeDetail from '../components/UI/AnimeDetail';
 import { useParams } from 'react-router-dom';
 import { TextField, Button } from '@mui/material';
-import getReviewByTitle, {
-	ReviewResponse,
-} from '../api/internal/getMangaReviewsByTitle';
+import getReviewByTitle, { ReviewResponse } from '../api/internal/getMangaReviewsByTitle';
 import postReview from '../api/internal/postMangaReview';
 
 const ReviewPage = () => {
@@ -30,22 +28,15 @@ const ReviewPage = () => {
 	};
 
 	return (
-		<div
-			style={{ backgroundColor: 'black', color: 'white', minHeight: '100vh' }}
-		>
+		<div style={{ backgroundColor: 'black', color: 'white', minHeight: '100vh' }}>
 			<h2 style={{ textAlign: 'center' }}>{anime} - Details and Reviews</h2>
 			<div
 				style={{
 					display: 'flex',
 					justifyContent: 'space-around',
 					padding: '20px',
-				}}
-			>
-				{anime ? (
-					<AnimeDetail anime={anime} />
-				) : (
-					<p style={{ textAlign: 'center' }}>Could not find that anime</p>
-				)}
+				}}>
+				{anime ? <AnimeDetail anime={anime} /> : <p style={{ textAlign: 'center' }}>Could not find that anime</p>}
 			</div>
 			<div style={{ padding: '20px', textAlign: 'center' }}>
 				<h3>Reviews</h3>
@@ -65,11 +56,7 @@ const ReviewPage = () => {
 					placeholder="Post your thoughts..."
 					onChange={e => setReviewContent(e.target.value)}
 				/>
-				<Button
-					variant="contained"
-					color="primary"
-					onClick={handleReviewSubmit}
-				>
+				<Button variant="contained" color="primary" onClick={handleReviewSubmit}>
 					Submit Review
 				</Button>
 			</div>

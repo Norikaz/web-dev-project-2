@@ -3,9 +3,14 @@ import Button from '@mui/material/Button';
 import { AppBar, Box, Drawer, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import DrawerItems from './DrawerItems';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
+	const navigate = useNavigate();
+	const handleLoginClick = () => {
+		navigate(`/login`);
+	};
+
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
 	const toggleDrawer = () => {
@@ -14,7 +19,7 @@ const NavBar = () => {
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static">
+			<AppBar position="sticky" sx={{ top: 0, zIndex: 1000 }}>
 				<Toolbar>
 					<IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={toggleDrawer}>
 						<MenuIcon />
@@ -24,7 +29,9 @@ const NavBar = () => {
 							AnimeCritic
 						</NavLink>
 					</Typography>
-					<Button color="inherit">Login</Button>
+					<Button color="inherit" onClick={handleLoginClick}>
+						Login
+					</Button>
 				</Toolbar>
 			</AppBar>
 			<Drawer anchor={'left'} open={isDrawerOpen} onClose={toggleDrawer}>
