@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import {
 	Paper,
 	TextField,
@@ -9,9 +9,22 @@ import {
 	Checkbox,
 } from '@mui/material';
 import WaveLabel from './WaveLabel';
+import AutoTextEffect from './AutoTextEffect';
 import './styles/index.scss';
 
 const LoginForm = () => {
+	const [backgroundBlur, setBackgroundBlur] = useState(20);
+	const [formBackground, setFormBackground] = useState(1);
+
+	const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const length = e.target.value.length;
+		const blurValue = Math.max(0, 20 - length * 2);
+		setBackgroundBlur(blurValue);
+
+		const backgroundOpacity = Math.max(0.5, 1 - length * 0.05);
+		setFormBackground(backgroundOpacity);
+	};
+
 	return (
 		<Box
 			sx={{
@@ -19,33 +32,47 @@ const LoginForm = () => {
 				justifyContent: 'center',
 				alignItems: 'center',
 				height: '100vh',
+				position: 'relative',
 			}}
 		>
+			<div
+				style={{
+					backgroundImage:
+						"url('https://wallpapers.com/images/hd/anime-blue-sky-and-girl-x9xbq3o91jcj2jyn.jpg')",
+					position: 'absolute',
+					top: 0,
+					left: 0,
+					right: 0,
+					bottom: 0,
+					backgroundSize: 'cover',
+					backgroundPosition: 'center center',
+					backgroundRepeat: 'no-repeat',
+					filter: `blur(${backgroundBlur}px)`,
+					zIndex: -1,
+				}}
+			></div>
+
 			<Paper
 				elevation={3}
 				sx={{
-					padding: '40px',
+					padding: '60px',
 					maxWidth: '400px',
 					width: '100%',
-					border: '1px solid purple',
-					backgroundColor: '#16151d',
+					border: '1px solid #5E2A95',
+					backgroundColor: `rgba(22, 21, 29, ${formBackground})`,
+					transition: 'background-color 0.3s ease',
+					zIndex: 2,
+					position: 'relative',
 				}}
 			>
-				<Typography
-					variant="h4"
-					align="center"
-					sx={{ marginBottom: '20px' }}
-					gutterBottom
-				>
-					User Login
-				</Typography>
+				<AutoTextEffect text="Log in..." speed={1.25} />{' '}
 				<div className="form-control">
 					<TextField
 						sx={{
 							marginBottom: '20px',
 							color: 'white',
 							'& .MuiInput-underline:before': {
-								borderBottom: '1px solid white',
+								borderBottom: '1px solid #5E2A95',
 							},
 						}}
 						fullWidth
@@ -60,15 +87,16 @@ const LoginForm = () => {
 					<TextField
 						sx={{
 							marginBottom: '20px',
-							color: 'white',
+							color: '#5E2A95',
 							'& .MuiInput-underline:before': {
-								borderBottom: '1px solid white',
+								borderBottom: '1px solid #5E2A95',
 							},
 						}}
 						type="password"
 						fullWidth
 						required
 						label=""
+						onChange={handlePasswordChange}
 						InputProps={{
 							endAdornment: <WaveLabel text="Password" />,
 						}}
@@ -85,7 +113,7 @@ const LoginForm = () => {
 					fullWidth
 					sx={{ marginTop: '20px' }}
 				>
-					Login
+					Log in
 				</Button>
 			</Paper>
 		</Box>

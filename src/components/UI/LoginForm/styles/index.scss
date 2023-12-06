@@ -21,15 +21,27 @@
 		&:focus + label span,
 		&:valid + label span {
 			transform: translateY(-45px);
-			background: -webkit-linear-gradient(45deg, #eee, purple);
+			background: -webkit-linear-gradient(45deg, #eee, #5e2a95);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
 		height: 50px;
 		padding-top: 0;
 		padding-bottom: 0;
-		/* Center the text vertically */
 		display: flex;
 		align-items: center;
 	}
+}
+.auto-text-effect {
+	font-size: 2rem;
+	color: White;
+	position: absolute;
+	top: -40px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	text-align: center;
+	z-index: 10;
+	margin-bottom: 20px;
+	font-family: 'Courier New', Courier, monospace;
 }
