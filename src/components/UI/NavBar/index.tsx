@@ -27,7 +27,7 @@ const NavBar = () => {
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="sticky">
+			<AppBar position="sticky" className="app-bar-gradient">
 				<Toolbar>
 					<IconButton
 						size="large"
@@ -43,12 +43,11 @@ const NavBar = () => {
 						variant="h5"
 						component="div"
 						sx={{ flexGrow: 1 }}
-						className="fadeInDown"
+						className="fadeInDown anime-critic-title"
 					>
 						<NavLink
 							to="/"
 							style={{ textDecoration: 'none', color: 'inherit' }}
-							className="anime-critic-title"
 						>
 							AnimeCritic
 						</NavLink>
@@ -56,13 +55,13 @@ const NavBar = () => {
 					<Button
 						color="inherit"
 						onClick={handleLoginClick}
-						className="log-in-button fadeInDown"
+						className="fadeInDown log-in-button"
 					>
 						Log in
 					</Button>
 				</Toolbar>
 			</AppBar>
-			<Drawer anchor={'left'} open={isDrawerOpen} onClose={toggleDrawer}>
+			<Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer}>
 				<DrawerItems toggleDrawer={toggleDrawer} />
 			</Drawer>
 		</Box>
