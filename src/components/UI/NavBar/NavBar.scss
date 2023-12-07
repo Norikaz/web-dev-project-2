@@ -1,0 +1,28 @@
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -100%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.fadeInDown {
+	animation-name: fadeInDown;
+	animation-duration: 1s;
+	animation-fill-mode: both;
+}
+
+.anime-critic-title {
+	font-size: 2.5rem;
+	font-weight: bold;
+	color: #ffffff !important;
+	text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+.log-in-button {
+	color: #ffffff !important;
+	font-weight: bold;
+}
