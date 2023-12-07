@@ -9,6 +9,24 @@
 	}
 }
 
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.app-bar-gradient {
+	background: linear-gradient(-45deg, #4b0082, #8a2be2, #d8bfd8, #7b68ee);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
 .fadeInDown {
 	animation-name: fadeInDown;
 	animation-duration: 1s;
@@ -18,11 +36,31 @@
 .anime-critic-title {
 	font-size: 2.5rem;
 	font-weight: bold;
-	color: #ffffff !important;
+	color: #ffffff;
 	text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+	transition:
+		color 0.3s ease,
+		text-shadow 0.3s ease;
+
+	&:hover {
+		color: #e0e0e0;
+		text-shadow: 0 0 10px #ffffff;
+		opacity: 0.8;
+	}
 }
 
 .log-in-button {
 	color: #ffffff !important;
-	font-weight: bold;
+	font-size: 1.5rem;
+	font-weight: bold !important;
+	transition:
+		background-color 0.3s ease,
+		transform 0.3s ease;
+
+	&:hover {
+		transform: translateY(-2px);
+		color: #e0e0e0;
+		text-shadow: 0 0 10px #ffffff;
+		opacity: 0.8;
+	}
 }
