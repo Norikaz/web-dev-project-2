@@ -28,16 +28,22 @@ const drawerWidth = 240;
 interface DrawerItemsProps {
 	window?: () => Window;
 	toggleDrawer: () => void;
+	onMangaHover: (mangaData: GetMangaSearchResponse[]) => void; // New prop
 }
 
-const DrawerItems: React.FC<DrawerItemsProps> = ({ window, toggleDrawer }) => {
+const DrawerItems: React.FC<DrawerItemsProps> = ({
+	window,
+	toggleDrawer,
+	onMangaHover,
+}) => {
 	const [mobileOpen, setMobileOpen] = useState(false);
 	const [hoveredGenre, setHoveredGenre] = useState<GenreFilter | null>(null);
 	const [mangaData, setMangaData] = useState<GetMangaSearchResponse[]>([]);
 
 	const handleGenreHover = async (genre: GenreFilter) => {
 		const data = await getManga(genre);
-		console.log('data returned from site:', data);
+		const limiteddata = data.slice(0, 5);
+		onMangaHover(limiteddata);
 		setMangaData(data);
 		setHoveredGenre(genre);
 	};
